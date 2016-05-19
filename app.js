@@ -9,17 +9,47 @@ var routes = require('./routes/index');
 var users = require('./routes/users');
 
 var app = express();
+var mysql      = require('mysql');
+var connection = mysql.createConnection({
+  host     : 'localhost',
+    user     : 'root',
+    password : '',
+    database : 'suissecheese'
+});
 /*
+connection.connect(function(err) {
+  if (err) throw err
+  console.log('You are now connected...')
+
+  connection.query('SELECT * FROM companies WHERE id = 1', function(err, results) {
+    console.log(results[0].name)
+  });
+  // connected! (unless `err` is set)
+});*/
+var db = require('./db')
+// Connect to MySQL on start
+db.connect(db.MODE_PRODUCTION, function(err) {
+  if (err) {
+    console.log('Unable to connect to MySQL.')
+    process.exit(1)
+  } else {
+    app.listen(4000, function() {
+      console.log('Listening on port 4000...')
+    })
+  }
+})
+
 var knex = require('knex')({
   client: 'mysql',
   connection: {
-    host     : '127.0.0.1',
-    user     : 'your_database_user',
-    password : 'your_database_password',
-    database : 'myapp_test'
+    host     : 'localhost',
+    user     : 'root',
+    password : '',
+    database : 'suissecheese'
   }
 });
-*/
+
+
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
