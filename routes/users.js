@@ -4,10 +4,11 @@ var router = express.Router();
 /* GET users listing. */
 router.get('/', function(req, res, next) {
 	var db = require('../db.js')
-	db.get().query('SELECT * FROM companies WHERE id = 1', function(err, results) {
-    console.log(results[0].name)
+	db.get().query('SELECT name, symbol FROM companies', function(err, results) {
+    console.log(results)
   });
-  res.send('respond with a resource');
+  //res.send('respond with a resource');
+  res.render('index', { title: 'Express' });
 });
 
 module.exports = router;
