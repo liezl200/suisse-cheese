@@ -112,8 +112,8 @@
                         },
                         option: function(item, escape) {
                             var name = formatName(item);
-                            var label = name || item.email;
-                            var caption = name ? item.email : null;
+                            var label = name || item.company_name;
+                            var caption = name ? item.company_name : null;
                             return '<div>' +
                                 '<span class="label">' + escape(label) + '</span>' +
                                 (caption ? '<span class="caption">' + escape(caption) + '</span>' : '') +
