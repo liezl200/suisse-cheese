@@ -16,16 +16,8 @@ var connection = mysql.createConnection({
     password : '',
     database : 'suissecheese'
 });
-/*
-connection.connect(function(err) {
-  if (err) throw err
-  console.log('You are now connected...')
 
-  connection.query('SELECT * FROM companies WHERE id = 1', function(err, results) {
-    console.log(results[0].name)
-  });
-  // connected! (unless `err` is set)
-});*/
+
 var db = require('./db')
 // Connect to MySQL on start
 db.connect(db.MODE_PRODUCTION, function(err) {
