@@ -10,7 +10,11 @@ MySQL database
 # setup
 cd suisse-cheese && sudo npm install
 
+# fix
+
 # relevant links
 http://cwbuecheler.com/web/tutorials/2013/node-express-mongo/
+
 https://scotch.io/tutorials/use-ejs-to-template-your-node-application
+
 http://knexjs.org/
