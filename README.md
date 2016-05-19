@@ -10,7 +10,7 @@ MySQL database
 # setup
 cd suisse-cheese && sudo npm install
 
-run server: node app.js
+run server: npm start
 
 link to index: http://localhost:3000/
 
