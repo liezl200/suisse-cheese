@@ -1,4 +1,5 @@
 CREATE TABLE companies (
+id mediumint(9) NOT NULL AUTO_INCREMENT,
 name varchar(255),
 symbol varchar(255),
 country varchar(255),
@@ -34,7 +35,8 @@ daily_vol_avg  decimal(14,4) ,
 price_return_2_3  decimal(14,4) ,
 high52_val  decimal(14,4) ,
 low52_val  decimal(14,4) ,
-annual_closing  decimal(14,4) );
+annual_closing  decimal(14,4), PRIMARY KEY (id)
+ );
 
 
 
