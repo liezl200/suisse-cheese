@@ -1,26 +1,115 @@
 0 info it worked if it ends with ok
-1 verbose cli [ 'node', '/usr/local/bin/npm', 'start' ]
+1 verbose cli [ 'node', '/usr/local/bin/npm', 'install' ]
 2 info using npm@1.4.28
 3 info using node@v0.10.32
-4 verbose run-script [ 'prestart', 'start', 'poststart' ]
-5 info prestart suisse-cheese@0.0.0
-6 info start suisse-cheese@0.0.0
-7 verbose unsafe-perm in lifecycle true
-8 info suisse-cheese@0.0.0 Failed to exec start script
-9 error suisse-cheese@0.0.0 start: `node ./bin/www`
-9 error Exit status 8
-10 error Failed at the suisse-cheese@0.0.0 start script.
-10 error This is most likely a problem with the suisse-cheese package,
-10 error not with npm itself.
-10 error Tell the author that this fails on your system:
-10 error     node ./bin/www
-10 error You can get their info via:
-10 error     npm owner ls suisse-cheese
-10 error There is likely additional logging output above.
-11 error System Darwin 13.4.0
-12 error command "node" "/usr/local/bin/npm" "start"
-13 error cwd /Users/liezl/suisse-cheese
-14 error node -v v0.10.32
-15 error npm -v 1.4.28
-16 error code ELIFECYCLE
-17 verbose exit [ 1, true ]
+4 verbose readDependencies using package.json deps
+5 verbose install where, deps [ '/Users/liezl/suisse-cheese',
+5 verbose install   [ 'body-parser',
+5 verbose install     'cookie-parser',
+5 verbose install     'debug',
+5 verbose install     'mysql',
+5 verbose install     'express',
+5 verbose install     'ejs',
+5 verbose install     'knex',
+5 verbose install     'async',
+5 verbose install     'morgan',
+5 verbose install     'serve-favicon' ] ]
+6 info preinstall suisse-cheese@0.0.0
+7 verbose readDependencies using package.json deps
+8 verbose already installed skipping mysql@~2.0 /Users/liezl/suisse-cheese
+9 verbose already installed skipping express@~4.13.1 /Users/liezl/suisse-cheese
+10 verbose already installed skipping ejs@1.0.0 /Users/liezl/suisse-cheese
+11 verbose already installed skipping knex@0.11.3 /Users/liezl/suisse-cheese
+12 verbose cache add [ 'async@1.0.0', null ]
+13 verbose cache add name=undefined spec="async@1.0.0" args=["async@1.0.0",null]
+14 verbose parsed url { protocol: null,
+14 verbose parsed url   slashes: null,
+14 verbose parsed url   auth: null,
+14 verbose parsed url   host: null,
+14 verbose parsed url   port: null,
+14 verbose parsed url   hostname: null,
+14 verbose parsed url   hash: null,
+14 verbose parsed url   search: null,
+14 verbose parsed url   query: null,
+14 verbose parsed url   pathname: 'async@1.0.0',
+14 verbose parsed url   path: 'async@1.0.0',
+14 verbose parsed url   href: 'async@1.0.0' }
+15 verbose already installed skipping morgan@~1.6.1 /Users/liezl/suisse-cheese
+16 verbose already installed skipping serve-favicon@~2.3.0 /Users/liezl/suisse-cheese
+17 verbose cache add name="async" spec="1.0.0" args=["async","1.0.0"]
+18 verbose parsed url { protocol: null,
+18 verbose parsed url   slashes: null,
+18 verbose parsed url   auth: null,
+18 verbose parsed url   host: null,
+18 verbose parsed url   port: null,
+18 verbose parsed url   hostname: null,
+18 verbose parsed url   hash: null,
+18 verbose parsed url   search: null,
+18 verbose parsed url   query: null,
+18 verbose parsed url   pathname: '1.0.0',
+18 verbose parsed url   path: '1.0.0',
+18 verbose parsed url   href: '1.0.0' }
+19 verbose addNamed [ 'async', '1.0.0' ]
+20 verbose addNamed [ '1.0.0', '1.0.0' ]
+21 silly lockFile 493732d1-async-1-0-0 async@1.0.0
+22 verbose lock async@1.0.0 /Users/liezl/.npm/493732d1-async-1-0-0.lock
+23 verbose already installed skipping body-parser@~1.13.2 /Users/liezl/suisse-cheese
+24 verbose already installed skipping cookie-parser@~1.3.5 /Users/liezl/suisse-cheese
+25 verbose already installed skipping debug@~2.2.0 /Users/liezl/suisse-cheese
+26 verbose request where is /async
+27 verbose request registry https://registry.npmjs.org/
+28 verbose request id 87afd2271ecba77a
+29 verbose url raw /async
+30 verbose url resolving [ 'https://registry.npmjs.org/', './async' ]
+31 verbose url resolved https://registry.npmjs.org/async
+32 verbose request where is https://registry.npmjs.org/async
+33 info trying registry request attempt 1 at 13:57:22
+34 verbose etag "AZTP3LE7DHCBPSH29XLTUFJDQ"
+35 http GET https://registry.npmjs.org/async
+36 http 200 https://registry.npmjs.org/async
+37 silly registry.get cb [ 200,
+37 silly registry.get   { server: 'CouchDB/1.5.0 (Erlang OTP/R16B03)',
+37 silly registry.get     etag: '"45BMNGJCYPBK7K4VZAN3PV1BM"',
+37 silly registry.get     'content-type': 'application/json',
+37 silly registry.get     'content-encoding': 'gzip',
+37 silly registry.get     'cache-control': 'max-age=300',
+37 silly registry.get     'content-length': '36091',
+37 silly registry.get     'accept-ranges': 'bytes',
+37 silly registry.get     date: 'Thu, 19 May 2016 20:57:23 GMT',
+37 silly registry.get     via: '1.1 varnish',
+37 silly registry.get     age: '1',
+37 silly registry.get     connection: 'keep-alive',
+37 silly registry.get     'x-served-by': 'cache-iad2130-IAD',
+37 silly registry.get     'x-cache': 'HIT',
+37 silly registry.get     'x-cache-hits': '1',
+37 silly registry.get     'x-timer': 'S1463691443.985273,VS0,VE0',
+37 silly registry.get     vary: 'Accept-Encoding' } ]
+38 silly lockFile a0d63a88--npmjs-org-async-async-1-0-0-tgz https://registry.npmjs.org/async/-/async-1.0.0.tgz
+39 verbose lock https://registry.npmjs.org/async/-/async-1.0.0.tgz /Users/liezl/.npm/a0d63a88--npmjs-org-async-async-1-0-0-tgz.lock
+40 verbose addRemoteTarball [ 'https://registry.npmjs.org/async/-/async-1.0.0.tgz',
+40 verbose addRemoteTarball   'f8fc04ca3a13784ade9e1641af98578cfbd647a9' ]
+41 info retry fetch attempt 1 at 13:57:23
+42 verbose fetch to= /var/folders/q4/znp4l4qx5c1dg5b6kl892m0m0000gn/T/npm-17710-_LL3QvsI/registry.npmjs.org/async/-/async-1.0.0.tgz
+43 http GET https://registry.npmjs.org/async/-/async-1.0.0.tgz
+44 http 200 https://registry.npmjs.org/async/-/async-1.0.0.tgz
+45 silly lockFile a0d63a88--npmjs-org-async-async-1-0-0-tgz https://registry.npmjs.org/async/-/async-1.0.0.tgz
+46 silly lockFile a0d63a88--npmjs-org-async-async-1-0-0-tgz https://registry.npmjs.org/async/-/async-1.0.0.tgz
+47 silly lockFile 493732d1-async-1-0-0 async@1.0.0
+48 silly lockFile 493732d1-async-1-0-0 async@1.0.0
+49 error Error: EACCES, mkdir '/Users/liezl/.npm/async/1.0.0'
+49 error  { [Error: EACCES, mkdir '/Users/liezl/.npm/async/1.0.0']
+49 error   errno: 3,
+49 error   code: 'EACCES',
+49 error   path: '/Users/liezl/.npm/async/1.0.0',
+49 error   parent: 'suisse-cheese' }
+50 error Please try running this command again as root/Administrator.
+51 error System Darwin 13.4.0
+52 error command "node" "/usr/local/bin/npm" "install"
+53 error cwd /Users/liezl/suisse-cheese
+54 error node -v v0.10.32
+55 error npm -v 1.4.28
+56 error path /Users/liezl/.npm/async/1.0.0
+57 error code EACCES
+58 error errno 3
+59 error stack Error: EACCES, mkdir '/Users/liezl/.npm/async/1.0.0'
+60 verbose exit [ 3, true ]
