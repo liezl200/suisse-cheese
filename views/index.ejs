@@ -75,7 +75,6 @@
         <div id="wrapper">
             <h1>Suisee Cheese</h1>
             <div class="demo">
-                <h2>Enter Symbol</h2>
                 <div class="control-group">
                     <select id="select-to" class="contacts" placeholder="Enter Symbol"></select>
                 </div>
@@ -94,9 +93,9 @@
                     maxOptions: 5,
                     valueField: 'email',
                     labelField: 'name',
-                    searchField: ['company_name', 'abbrv'],
+                    searchField: ['company_name', 'email'],
                     sortField: [
-                        {field: 'first_name', direction: 'asc'},
+                        {field: 'company_name', direction: 'asc'},
                         {field: 'email', direction: 'asc'}
                     ],
                     options: [
@@ -157,6 +156,13 @@
                 }
                 </script>
 
+                <script>
+                    $('body').keypress(function(e) {
+                        if (e.keyCode == '13') {
+                            window.location.href = "./error.ejs";
+                        }
+                    });
+                </script>
 
 
 
