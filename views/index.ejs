@@ -90,7 +90,8 @@
 
                 $('#select-to').selectize({
                     persist: false,
-                    maxItems: null,
+                    maxItems: 1,
+                    maxOptions: 5,
                     valueField: 'email',
                     labelField: 'name',
                     searchField: ['company_name', 'abbrv'],
@@ -147,6 +148,18 @@
                     }
                 });
                 </script>
+
+                <p id="demo" onclick="myFunction()">Search</p>
+
+                <script>
+                function myFunction() {
+                    window.location.href = "./error.ejs";
+                }
+                </script>
+
+
+
+
             </div>
         </div>
     </body>
