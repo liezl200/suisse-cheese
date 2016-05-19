@@ -31,17 +31,6 @@ db.connect(db.MODE_PRODUCTION, function(err) {
   }
 })
 
-var knex = require('knex')({
-  client: 'mysql',
-  connection: {
-    host     : 'localhost',
-    user     : 'root',
-    password : '',
-    database : 'suissecheese'
-  }
-});
-
-
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
@@ -55,9 +44,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-
-
-
+// ROUTES
 app.use('/', routes);
 app.use('/users', users);
 
