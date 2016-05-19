@@ -10,7 +10,9 @@ MySQL database
 # setup
 cd suisse-cheese && sudo npm install
 
-# fix
+run server: node app.js
+
+link to index: http://localhost:3000/
 
 # relevant links
 http://cwbuecheler.com/web/tutorials/2013/node-express-mongo/
