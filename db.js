@@ -11,7 +11,7 @@ exports.connect = function(mode, done) {
     host: 'localhost',
     user: 'root',
     password: '',
-    database: 'suissecheese'  })
+    database: 'suissecheese'})
 
   state.mode = mode
   done()
