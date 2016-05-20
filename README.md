@@ -1,7 +1,9 @@
 # suisse-cheese
 A companies research platform for Code Suisse, complete with smart charts and machine learning-based analysis
 
-# Presentation / documentation/ design link (complete with screenshots for your viewing pleasure): https://docs.google.com/presentation/d/1x6nTmVySRdTtMqi2lLCYH-nW-wbWoax6p_JyZossDpk/edit?usp=sharing
+# Presentation / documentation/ design link (complete with screenshots for your viewing pleasure): 
+
+https://docs.google.com/presentation/d/1x6nTmVySRdTtMqi2lLCYH-nW-wbWoax6p_JyZossDpk/edit?usp=sharing
 
 # Technology Stack
 MySQL database (hosted on localhost)
