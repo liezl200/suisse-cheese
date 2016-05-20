@@ -42,6 +42,7 @@ p, .control-group {
 	-moz-border-radius: 3px;
 	border-radius: 3px;
 }
+
 .demo:last-child {
 	border-bottom: 0 none;
 }
@@ -79,8 +80,8 @@ p, .control-group {
 	margin: 0;
 }
 #wrapper > * {
-	padding-left: 100px;
-	padding-right: 100px;
+	padding-left: 200px;
+	padding-right: 200px;
 }
 pre {
 	background: #f8f8f8;
