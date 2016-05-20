@@ -86,7 +86,7 @@
                 opt = []
                 for (var i = 0; i < rows.length; i++) {
                     var row = rows[i];
-                    opt[i] = {email: row.name, company_name: row.symbol}
+                    opt[i] = {email: row.symbol, company_name: row.name}
                 }
 
 
@@ -100,7 +100,7 @@
                 $('#select-to').selectize({
                     persist: false,
                     maxItems: 1,
-                    maxOptions: 5,
+                    maxOptions: 5000,
                     valueField: 'email',
                     labelField: 'name',
                     searchField: ['company_name', 'email'],
@@ -159,14 +159,14 @@
 
                 <script>
                 function myFunction() {
-                    window.location.href = "/info";
+                    window.location.href = "/info/" + $(".selected-stock").text();
                 }
                 </script>
 
                 <script>
                     $('body').keypress(function(e) {
                         if (e.keyCode == '13') {
-                            window.location.href = "/info";
+                            window.location.href = "/info/" + $(".selected-stock").text();
                         }
                     });
                 </script>

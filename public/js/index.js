@@ -7,7 +7,7 @@ $(function() {
 	var themes = ['default','legacy','bootstrap2','bootstrap3'];
 	$('head').append('<link rel="stylesheet" href="../dist/css/selectize.' + theme + '.css">');
 
-	
+
 
 	// display scripts on the page
 	$('script', $wrapper).each(function() {
@@ -27,16 +27,17 @@ $(function() {
 			}
 
 			var code = $.trim(lines.join('\n')).replace(/	/g, '    ');
-			
+
 		}
 	});
 
 	// show current input values
 	$('select.selectized,input.selectized', $wrapper).each(function() {
-		var $container = $('<div>').addClass('value').html('Current Value: ');
-		var $value = $('<span>').appendTo($container);
+		var $container = $('<div>').addClass('value')
+		var $value = $('<input>').addClass('selected-stock').attr('type','hidden').appendTo($container);
 		var $input = $(this);
-		var update = function(e) { $value.text(JSON.stringify($input.val())); }
+		console.log($input);
+		var update = function(e) { $value.text($input.val()); }
 
 		$(this).on('change', update);
 		update();
@@ -44,5 +45,5 @@ $(function() {
 		$container.insertAfter($input);
 	});
 
-	
+
 });
