@@ -3,20 +3,23 @@ var router = express.Router();
 
 /* GET /info page for a certain stock */
 router.get('/:id', function(req, res, next) {
-	stock_id = req.params.id;
-	var db = require('../db.js');
+	stock_ids = req.params.id.split(",");
+
+	query_string = "";
+	for(var i = 0; i < stock_ids.length-1; i++){
+		query_string += "?,";
+	}
+	query_string += "?";
 
 	// With the WHERE clause, we must make sure to use prepared statements to prevent SQL injections.
-	db.get().query('SELECT * FROM companies WHERE symbol = ?', [stock_id], function(err, results) {
+	// Note that concatenation of query_string is secure because the
+	// concatenated query string can only have some number of question marks,
+	// which are safe characters so the query still uses prepared statements with sanitized inputs.
+	var db = require('../db.js');
+	db.get().query('SELECT * FROM companies WHERE symbol IN ( ' + query_string + ')', stock_ids, function(err, results) {
     console.log(results);
-    res.render('detailview', { title: stock_id + ' Info', stock_info: results});
+    res.render('detailview', { title: 'Stock Info', stock_info: results});
   });
 });
-
-/* GET /info page without stock parameter passed in */
-router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Search', names: results});
-});
-
 
 module.exports = router;
