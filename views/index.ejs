@@ -52,16 +52,16 @@
             filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#0059c7', endColorstr='#0051c1',GradientType=0 );
             border-color: #0051c1;
         }
-        .selectize-control.contacts .selectize-input > div .email {
+        .selectize-control.contacts .selectize-input > div .company_symbol {
             opacity: 0.8;
         }
-        .selectize-control.contacts .selectize-input > div .name + .email {
+        .selectize-control.contacts .selectize-input > div .name + .company_symbol {
             margin-left: 5px;
         }
-        .selectize-control.contacts .selectize-input > div .email:before {
+        .selectize-control.contacts .selectize-input > div .company_symbol:before {
             content: '<';
         }
-        .selectize-control.contacts .selectize-input > div .email:after {
+        .selectize-control.contacts .selectize-input > div .company_symbol:after {
             content: '>';
         }
         .selectize-control.contacts .selectize-dropdown .caption {
@@ -86,27 +86,27 @@
                 opt = []
                 for (var i = 0; i < rows.length; i++) {
                     var row = rows[i];
-                    opt[i] = {email: row.symbol, company_name: row.name}
+                    opt[i] = {company_symbol: row.symbol, company_name: row.name}
                 }
 
 
 
-                var REGEX_EMAIL = '([A-Z]{1,4}(\.[A-Z]{1,2})?)(?=\s|$)';
+                var REGEX_COMPANY_SYMBOL = '([A-Z]{1,4}(\.[A-Z]{1,2})?)(?=\s|$)';
 
                 var formatName = function(item) {
-                    return $.trim((item.email));
+                    return $.trim((item.company_symbol));
                 };
 
                 $('#select-to').selectize({
                     persist: false,
                     maxItems: 1,
                     maxOptions: 5000,
-                    valueField: 'email',
+                    valueField: 'company_symbol',
                     labelField: 'name',
-                    searchField: ['company_name', 'email'],
+                    searchField: ['company_name', 'company_symbol'],
                     sortField: [
                         {field: 'company_name', direction: 'asc'},
-                        {field: 'email', direction: 'asc'}
+                        {field: 'company_symbol', direction: 'asc'}
                     ],
                     options: opt,
                     render: {
@@ -114,7 +114,7 @@
                             var name = formatName(item);
                             return '<div>' +
                                 (name ? '<span class="name">' + escape(name) + '</span>' : '') +
-                                (item.email ? '<span class="email">' + escape(item.company_name) + '</span>' : '') +
+                                (item.company_symbol ? '<span class="company_symbol">' + escape(item.company_name) + '</span>' : '') +
                             '</div>';
                         },
                         option: function(item, escape) {
@@ -128,15 +128,15 @@
                         }
                     },
                     createFilter: function(input) {
-                        var regexpA = new RegExp('^' + REGEX_EMAIL + '$', 'i');
-                        var regexpB = new RegExp('^' + REGEX_EMAIL + '$', 'i');
+                        var regexpA = new RegExp('^' + REGEX_COMPANY_SYMBOL + '$', 'i');
+                        var regexpB = new RegExp('^' + REGEX_COMPANY_SYMBOL + '$', 'i');
                         return regexpA.test(input) || regexpB.test(input);
                     },
                     create: function(input) {
-                        if ((new RegExp('^' + REGEX_EMAIL + '$', 'i')).test(input)) {
-                            return {email: input};
+                        if ((new RegExp('^' + REGEX_COMPANY_SYMBOL + '$', 'i')).test(input)) {
+                            return {company_symbol: input};
                         }
-                        var match = input.match(new RegExp('^' + REGEX_EMAIL + '$', 'i'));
+                        var match = input.match(new RegExp('^' + REGEX_COMPANY_SYMBOL + '$', 'i'));
                         if (match) {
                             var name       = $.trim(match[1]);
                             var pos_space  = name.indexOf(' ');
@@ -144,7 +144,7 @@
                             var last_name  = name.substring(pos_space + 1);
 
                             return {
-                                email: match[2],
+                                company_symbol: match[2],
                                 first_name: first_name,
                                 last_name: last_name
                             };
