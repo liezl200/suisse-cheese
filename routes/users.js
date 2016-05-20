@@ -3,7 +3,7 @@ var router = express.Router();
 
 /* GET users listing. */
 router.get('/', function(req, res, next) {
-	var db = require('../db.js')
+	var db = require('../db.js');
 	db.get().query('SELECT name, symbol FROM companies', function(err, results) {
     //console.log(results)
   });
