@@ -29,7 +29,7 @@ If you run into the error: "Permissions on configuration file, should not be wor
 
 ```sudo chmod 755 xamppfiles/phpmyadmin/config.inc.php```
 
-Create a database and run the importdata_noNA.sql script for the database you just created. Then change the app.js mysql connection to reference localhost (or wherever you are hosting your database), your username/ password for the database server, and your new database name. We use "suissecheese" as our database name, "root" as our database user, "" as our password, and "localhost" as our database host (user: "root", password: "", host: "localhost" is the default for XAMPP.
+Create a database and run the importdata_noNA.sql script for the database you just created. Then change the connection pool settings in db.js to reference localhost (or wherever you are hosting your database), your username/ password for the database server, and your new database name. We use "suissecheese" as our database name, "root" as our database user, "" as our password, and "localhost" as our database host (user: "root", password: "", host: "localhost" is the default for XAMPP.
 
 ## Run app
 Make sure you are in the suisse-cheese repo then run: ```npm start```

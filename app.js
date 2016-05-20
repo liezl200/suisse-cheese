@@ -9,14 +9,7 @@ var routes = require('./routes/index');
 var detailview = require('./routes/detailview')
 
 var app = express();
-var mysql      = require('mysql');
-var connection = mysql.createConnection({
-  host     : 'localhost',
-    user     : 'root',
-    password : '',
-    database : 'suissecheese'
-});
-
+var mysql = require('mysql');
 
 var db = require('./db')
 // Connect to MySQL on start
