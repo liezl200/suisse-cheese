@@ -35,7 +35,7 @@ Create a database and run the importdata.sql script for the database you just cr
 Make sure you are in the suisse-cheese repo then run: ```npm start```
 
 ## Go to index
-In your browser, navigate to the homepage[http://localhost:3000/]
+In your browser, navigate to the homepage: http://localhost:3000/
 
 
 # Relevant Links
