@@ -16,9 +16,9 @@ EJS (Embedded JavaScript)
 This setup requires that you have node installed.
 
 ## Clone repo and install dependencies
-git clone https://github.com/liezl200/suisse-cheese.git
+```git clone https://github.com/liezl200/suisse-cheese.git```
 
-cd suisse-cheese && sudo npm install
+```cd suisse-cheese && sudo npm install```
 
 ## Set up database
 To use the database, you must run a local MySQL server on a separate process, since Node.js only has one process (see http://blog.modulus.io/nodejs-and-sqlite). This is why MySQL is preferred over a headless server like sqlite.
@@ -27,15 +27,15 @@ Once you install XAMPP, open the manager-osx executable and start the MySQL data
 
 If you run into the error: "Permissions on configuration file, should not be world writeable" when you start up the php server in XAMPP, try going into your XAMPP folder then run the following command (http://stackoverflow.com/questions/7577490/phpmyadmin-wrong-permissions-on-configuration-file-should-not-be-world-writabl):
 
-sudo chmod 755 xamppfiles/phpmyadmin/config.inc.php
+```sudo chmod 755 xamppfiles/phpmyadmin/config.inc.php```
 
 Create a database and run the importdata.sql script for the database you just created. Then change the app.js mysql connection to reference localhost (or wherever you are hosting your database), your username/ password for the database server, and your new database name. We use "suissecheese" as our database name, "root" as our database user, "" as our password, and "localhost" as our database host (user: "root", password: "", host: "localhost" is the default for XAMPP.
 
 ## Run app
-run server: npm start
+Make sure you are in the suisse-cheese repo then run: ```npm start```
 
 ## Go to index
-link to index: http://localhost:3000/
+In your browser, navigate to the homepage[http://localhost:3000/]
 
 
 # Relevant Links
