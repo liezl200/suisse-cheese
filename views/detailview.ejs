@@ -17,46 +17,16 @@
 
     <div class="col-md-4">
 
-            <h1 id="symbol">Symbol</h1> <div id="country">Country</div>
-            <h2 id="name">Name</h2>
-            <p id="current_price">Current Price</p>
-            <p id="warranted_default">Warranted Default</p>
-            <p id="industry">Industry</p>
-            <h1 id="symbol">Symbol</h1> <div id="country">Country</div>
-            <h2 id="name">Name</h2>
-            <p id="current_price">Current Price</p>
-            <p id="warranted_default">Warranted Default</p>
-            <p id="industry">Industry</p>
-            <h1 id="symbol">Symbol</h1> <div id="country">Country</div>
-            <h2 id="name">Name</h2>
-            <p id="current_price">Current Price</p>
-            <p id="warranted_default">Warranted Default</p>
-            <p id="industry">Industry</p>
-            <h1 id="symbol">Symbol</h1> <div id="country">Country</div>
-            <h2 id="name">Name</h2>
-            <p id="current_price">Current Price</p>
-            <p id="warranted_default">Warranted Default</p>
-            <p id="industry">Industry</p>
-            <h1 id="symbol">Symbol</h1> <div id="country">Country</div>
-            <h2 id="name">Name</h2>
-            <p id="current_price">Current Price</p>
-            <p id="warranted_default">Warranted Default</p>
-            <p id="industry">Industry</p>
-            <h1 id="symbol">Symbol</h1> <div id="country">Country</div>
-            <h2 id="name">Name</h2>
-            <p id="current_price">Current Price</p>
-            <p id="warranted_default">Warranted Default</p>
-            <p id="industry">Industry</p>
-            <h1 id="symbol">Symbol</h1> <div id="country">Country</div>
-            <h2 id="name">Name</h2>
-            <p id="current_price">Current Price</p>
-            <p id="warranted_default">Warranted Default</p>
-            <p id="industry">Industry</p>
-            <h1 id="symbol">Symbol</h1> <div id="country">Country</div>
-            <h2 id="name">Name</h2>
-            <p id="current_price">Current Price</p>
-            <p id="warranted_default">Warranted Default</p>
-            <p id="industry">Industry</p>
+            <%stock_info.forEach(function(comp_info) { %>
+
+                <h1 id="symbol"><%= comp_info.symbol %></h1>
+                <div id="country"><%= comp_info.country %></div>
+                <h2 id="name"><%= comp_info.name %></h2>
+                <p id="industry"><%= comp_info.industry_sector %></p>
+                <p id="current_price">Current Price: <%= comp_info.current_price %></p>
+                <p id="warranted_default">Warranted Default Price: <%= comp_info.warranted_price %></p>
+            <%});%>
+
     </div>
 
     <div class="col-md-8">
@@ -77,10 +47,7 @@
             <script>
 
 
-
-
-
-                var MONTHS = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+                var MONTHS = ["Week 1", "Week 2", "Week 4", "Week 13", "Week 26", "Week 30", "Week 39", "Week 52"];
 
                 var randomScalingFactor = function() {
                     return Math.round(Math.random() * 100);
@@ -95,7 +62,7 @@
                 var config = {
                     type: 'line',
                     data: {
-                        labels: ["January", "February", "March", "April", "May", "June", "July"],
+                        labels: ["Week 1", "Week 2", "Week 4", "Week 13", "Week 26", "Week 30", "Week 39", "Week 52"],
                         datasets: [{
                             label: "My First dataset",
                             data: [randomScalingFactor(), randomScalingFactor(), randomScalingFactor(), randomScalingFactor(), randomScalingFactor(), randomScalingFactor(), randomScalingFactor()],
