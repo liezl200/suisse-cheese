@@ -3,8 +3,11 @@ A companies research platform for Code Suisse, complete with smart charts and ma
 
 # Technology Stack
 MySQL database (hosted on localhost)
+
 Express.js
+
 Node.js
+
 EJS (Embedded JavaScript)
 
 # Challenges & Solutions
@@ -14,6 +17,7 @@ This setup requires that you have node installed.
 
 ## Clone repo and install dependencies
 git clone https://github.com/liezl200/suisse-cheese.git
+
 cd suisse-cheese && sudo npm install
 
 ## Set up database
@@ -34,7 +38,7 @@ run server: npm start
 link to index: http://localhost:3000/
 
 
-# relevant links
+# Relevant Links
 http://cwbuecheler.com/web/tutorials/2013/node-express-mongo/
 
 https://scotch.io/tutorials/use-ejs-to-template-your-node-application
