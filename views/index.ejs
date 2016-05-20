@@ -81,6 +81,16 @@
                 <script>
                 // <select id="select-to"></select>
 
+                var rows =<%-JSON.stringify(names)%>
+                      var rows =<%-JSON.stringify(names)%>
+                opt = []
+                for (var i = 0; i < rows.length; i++) {
+                    var row = rows[i];
+                    opt[i] = {email: row.name, company_name: row.symbol}
+                }
+
+
+
                 var REGEX_EMAIL = '([A-Z]{1,4}(\.[A-Z]{1,2})?)(?=\s|$)';
 
                 var formatName = function(item) {
@@ -98,10 +108,7 @@
                         {field: 'company_name', direction: 'asc'},
                         {field: 'email', direction: 'asc'}
                     ],
-                    options: [
-                        {email: 'Apple', company_name: 'AAPL'},
-                        {email: 'Google', company_name: 'GOOG'},
-                    ],
+                    options: opt,
                     render: {
                         item: function(item, escape) {
                             var name = formatName(item);
