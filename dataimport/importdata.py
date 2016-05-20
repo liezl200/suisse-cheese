@@ -34,7 +34,7 @@ with open('companydata2.txt', 'rU') as csvfile:
         continue # skip row
 
       # Generate "INSERT INTO" SQL statements for each company
-      print 'INSERT INTO companies VALUES ("' + str(i) + '", '
+      print 'INSERT INTO companies VALUES ("' + str(id_ct) + '", '
       for col_num in range (0, len(col_names)):
           print '"' + company_data[col_num].replace('"', "") + '"',
           if col_num < len(col_names) - 1:

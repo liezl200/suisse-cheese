@@ -1,0 +1,104 @@
+<div id="wrap-select">
+    <div class="demo">
+        <p id="demo" onclick="myFunction()">Search</p>
+
+        <script>
+        function myFunction() {
+            window.location.href = "/info/" + $(".selected-stock").text();
+        }
+        </script>
+        <div class="control-group">
+            <select id="select-to" class="contacts" placeholder="Enter Symbol"></select>
+        </div>
+
+        <script>
+        // <select id="select-to"></select>
+
+        var rows =<%-JSON.stringify(names)%>
+              var rows =<%-JSON.stringify(names)%>
+        opt = []
+        for (var i = 0; i < rows.length; i++) {
+            var row = rows[i];
+            opt[i] = {company_symbol: row.symbol, company_name: row.name}
+        }
+
+
+
+        var REGEX_COMPANY_SYMBOL = '([A-Z]{1,4}(\.[A-Z]{1,2})?)(?=\s|$)';
+
+        var formatName = function(item) {
+            return $.trim((item.company_symbol));
+        };
+
+        $('#select-to').selectize({
+            persist: false,
+            maxItems: null,
+            maxOptions: 5000,
+            valueField: 'company_symbol',
+            labelField: 'name',
+            searchField: ['company_name', 'company_symbol'],
+            sortField: [
+                {field: 'company_name', direction: 'asc'},
+                {field: 'company_symbol', direction: 'asc'}
+            ],
+            options: opt,
+            render: {
+                item: function(item, escape) {
+                    var name = formatName(item);
+                    return '<div>' +
+                        (name ? '<span class="name">' + escape(name) + '</span>' : '') +
+                        (item.company_symbol ? '<span class="company_symbol">' + escape(item.company_name) + '</span>' : '') +
+                    '</div>';
+                },
+                option: function(item, escape) {
+                    var name = formatName(item);
+                    var label = name || item.company_name;
+                    var caption = name ? item.company_name : null;
+                    return '<div>' +
+                        '<span class="label">' + escape(label) + '</span>' +
+                        (caption ? '<span class="caption">' + escape(caption) + '</span>' : '') +
+                    '</div>';
+                }
+            },
+            createFilter: function(input) {
+                var regexpA = new RegExp('^' + REGEX_COMPANY_SYMBOL + '$', 'i');
+                var regexpB = new RegExp('^' + REGEX_COMPANY_SYMBOL + '$', 'i');
+                return regexpA.test(input) || regexpB.test(input);
+            },
+            create: function(input) {
+                if ((new RegExp('^' + REGEX_COMPANY_SYMBOL + '$', 'i')).test(input)) {
+                    return {company_symbol: input};
+                }
+                var match = input.match(new RegExp('^' + REGEX_COMPANY_SYMBOL + '$', 'i'));
+                if (match) {
+                    var name       = $.trim(match[1]);
+                    var pos_space  = name.indexOf(' ');
+                    var first_name = name.substring(0, pos_space);
+                    var last_name  = name.substring(pos_space + 1);
+
+                    return {
+                        company_symbol: match[2],
+                        first_name: first_name,
+                        last_name: last_name
+                    };
+                }
+                alert('Invalid symbol.');
+                return false;
+            }
+        });
+        </script>
+
+
+
+        <script>
+            $('body').keypress(function(e) {
+                if (e.keyCode == '13') {
+                    window.location.href = "/info/" + $(".selected-stock").text();
+                }
+            });
+        </script>
+
+
+
+    </div>
+</div>

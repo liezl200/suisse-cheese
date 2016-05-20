@@ -1,5 +1,5 @@
 $(function() {
-	var $wrapper = $('#wrapper');
+	var $wrapper = $('#wrap-select');
 
 	// theme switcher
 	var theme_match = String(window.location).match(/[?&]theme=([a-z0-9]+)/);
