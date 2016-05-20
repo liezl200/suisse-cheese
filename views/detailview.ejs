@@ -69,7 +69,7 @@
             <script>
 
 
-                var MONTHS = ["Week 1", "Week 2", "Week 4", "Week 13", "Week 26", "Week 30", "Week 39", "Week 52"];
+                var WEEKS = ["Week 1", "Week 2", "Week 4", "Week 13", "Week 26", "Week 30", "Week 39", "Week 52"];
 
                 var randomScalingFactor = function() {
                     return Math.round(Math.random() * 100);
@@ -137,27 +137,6 @@
                         tooltips: {
                             mode: 'label',
                             callbacks: {
-                                // beforeTitle: function() {
-                                //     return '...beforeTitle';
-                                // },
-                                // afterTitle: function() {
-                                //     return '...afterTitle';
-                                // },
-                                // beforeBody: function() {
-                                //     return '...beforeBody';
-                                // },
-                                // afterBody: function() {
-                                //     return '...afterBody';
-                                // },
-                                // beforeFooter: function() {
-                                //     return '...beforeFooter';
-                                // },
-                                // footer: function() {
-                                //     return 'Footer';
-                                // },
-                                // afterFooter: function() {
-                                //     return '...afterFooter';
-                                // },
                             }
                         },
                         hover: {
@@ -168,14 +147,14 @@
                                 display: true,
                                 scaleLabel: {
                                     show: true,
-                                    labelString: 'Month'
+                                    labelString: 'Week'
                                 }
                             }],
                             yAxes: [{
                                 display: true,
                                 scaleLabel: {
                                     show: true,
-                                    labelString: 'Value'
+                                    labelString: 'Price'
                                 },
                                 ticks: {
                                     suggestedMin: -40,
@@ -204,29 +183,7 @@
                     });
                     window.myLine.update();
                 });
-                $('#changeDataObject').click(function() {
-                    config.data = {
-                        labels: ["July", "August", "September", "October", "November", "December"],
-                        datasets: [{
-                            label: "My First dataset",
-                            data: [randomScalingFactor(), randomScalingFactor(), randomScalingFactor(), randomScalingFactor(), randomScalingFactor(), randomScalingFactor()],
-                            fill: false,
-                        }, {
-                            label: "My Second dataset",
-                            fill: false,
-                            data: [randomScalingFactor(), randomScalingFactor(), randomScalingFactor(), randomScalingFactor(), randomScalingFactor(), randomScalingFactor()],
-                        }]
-                    };
-                    $.each(config.data.datasets, function(i, dataset) {
-                        dataset.borderColor = randomColor(0.4);
-                        dataset.backgroundColor = randomColor(0.5);
-                        dataset.pointBorderColor = randomColor(0.7);
-                        dataset.pointBackgroundColor = randomColor(0.5);
-                        dataset.pointBorderWidth = 1;
-                    });
-                    // Update the chart
-                    window.myLine.update();
-                });
+
                 $('#addDataset').click(function() {
                     var newDataset = {
                         label: 'Dataset ' + config.data.datasets.length,
@@ -245,8 +202,8 @@
                 });
                 $('#addData').click(function() {
                     if (config.data.datasets.length > 0) {
-                        var month = MONTHS[config.data.labels.length % MONTHS.length];
-                        config.data.labels.push(month);
+                        var week = WEEKS[config.data.labels.length % WEEKS.length];
+                        config.data.labels.push(week);
                         $.each(config.data.datasets, function(i, dataset) {
                             dataset.data.push(randomScalingFactor());
                         });
