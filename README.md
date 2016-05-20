@@ -1,6 +1,8 @@
 # suisse-cheese
 A companies research platform for Code Suisse, complete with smart charts and machine learning-based analysis
 
+# Presentation / documentation/ design link (complete with screenshots for your viewing pleasure): https://docs.google.com/presentation/d/1x6nTmVySRdTtMqi2lLCYH-nW-wbWoax6p_JyZossDpk/edit?usp=sharing
+
 # Technology Stack
 MySQL database (hosted on localhost)
 
@@ -10,7 +12,20 @@ Node.js
 
 EJS (Embedded JavaScript)
 
+Bootstrap
+
+## Libraries used:
+JQuery
+
+Selectize
+
+ChartJS
+
+
 # Challenges & Solutions
+
+## Front end challenges
+As a first attempt at responsive design, we used Bootstrap sidebars with the "affix" class, which treats the right panel with the graph as a sticky panel. Although this worked perfectly to our specifications on desktop and tablet, a problem arose, however, when we tested the design on mobile. The graph visualization disappears due to the nature of the sidebar, but the recommendations were displayed in a concise list. Ideally, we would create a separate mobile view and user interface to optimize for these devices, but for now, the mobile companion site serves as a quick summary / lookup tool without visualizations.
 
 # Setup
 This setup requires that you have node installed.

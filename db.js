@@ -1,3 +1,5 @@
+/* Maintains a database connection pool for asynchronous database queries. */
+
 var mysql = require('mysql')
   , async = require('async');
 
