@@ -8,6 +8,7 @@ var state = {
 
 exports.connect = function(mode, done) {
   state.pool = mysql.createPool({
+    multipleStatements: true,
     host: 'localhost',
     user: 'root',
     password: '',

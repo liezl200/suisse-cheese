@@ -16,9 +16,9 @@ router.get('/:id', function(req, res, next) {
 	// concatenated query string can only have some number of question marks,
 	// which are safe characters so the query still uses prepared statements with sanitized inputs.
 	var db = require('../db.js');
-	db.get().query('SELECT * FROM companies WHERE symbol IN ( ' + query_string + ')', stock_ids, function(err, results) {
+	db.get().query('SELECT * FROM companies WHERE symbol IN ( ' + query_string + '); SELECT name, symbol FROM companies;', stock_ids, function(err, results) {
     console.log(results);
-    res.render('detailview', { title: 'Stock Info', stock_info: results});
+    res.render('detailview', { title: 'Stock Info', stock_info: results[0], names: results[1]});
   });
 });
 
