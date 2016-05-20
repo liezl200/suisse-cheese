@@ -1,14 +1,11 @@
 <div id="wrap-select">
     <div class="demo">
-        <p id="demo" onclick="myFunction()">Search</p>
 
-        <script>
-        function myFunction() {
-            window.location.href = "/info/" + $(".selected-stock").text();
-        }
-        </script>
-        <div class="control-group">
-            <select id="select-to" class="contacts" placeholder="Enter Symbol"></select>
+
+        <div class="col-md-8 col-xs-8 col-sm-8">
+            <div class="control-group">
+                <select id="select-to" class="contacts" placeholder="Enter Symbol"></select>
+            </div>
         </div>
 
         <script>
@@ -86,6 +83,25 @@
                 return false;
             }
         });
+        </script>
+        <div class="col-md-4 col-xs-4 col-sm-4">
+            <div onclick="myFunction()" style="
+                        background-color: #2980b9;
+                        border: none;
+                        color: white;
+                        padding: 15px 32px;
+                        text-align: center;
+                        text-transform: uppercase;
+                        font-family: 'Ubuntu Condensed', sans-serif;
+                        text-decoration: none;
+                        display: inline-block;
+                        font-size: 16px;">Search</div>
+        </div>
+
+        <script>
+        function myFunction() {
+            window.location.href = "/info/" + $(".selected-stock").text();
+        }
         </script>
 
 
