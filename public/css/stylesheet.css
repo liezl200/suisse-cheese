@@ -35,14 +35,12 @@ p, .control-group {
 	margin: 0 0 20px 0;
 }
 .demo {
-	border-bottom: 1px solid #e8e8e8;
 	padding-top: 50px;
 	padding-bottom: 50px;
 	-webkit-border-radius: 3px;
 	-moz-border-radius: 3px;
 	border-radius: 3px;
 }
-
 .demo:last-child {
 	border-bottom: 0 none;
 }
@@ -80,8 +78,8 @@ p, .control-group {
 	margin: 0;
 }
 #wrapper > * {
-	padding-left: 200px;
-	padding-right: 200px;
+	padding-left: 100px;
+	padding-right: 100px;
 }
 pre {
 	background: #f8f8f8;
