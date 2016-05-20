@@ -15,15 +15,10 @@ router.get('/:id', function(req, res, next) {
 	// Note that concatenation of query_string is secure because the
 	// concatenated query string can only have some number of question marks,
 	// which are safe characters so the query still uses prepared statements with sanitized inputs.
-	var drinks = [
-        { name: 'Bloody Mary', drunkness: 3 },
-        { name: 'Martini', drunkness: 5 },
-        { name: 'Scotch', drunkness: 10 }
-    ];
 	var db = require('../db.js');
 	db.get().query('SELECT * FROM companies WHERE symbol IN ( ' + query_string + '); SELECT name, symbol FROM companies;', stock_ids, function(err, results) {
     console.log(results[0]);
-    res.render('detailview', { title: 'Stock Info', drinks:drinks, stock_info: results[0], names: results[1]});
+    res.render('detailview', { title: 'Stock Info', stock_info: results[0], names: results[1]});
   });
 });
 

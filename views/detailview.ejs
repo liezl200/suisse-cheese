@@ -19,12 +19,12 @@
 
             <%stock_info.forEach(function(comp_info) { %>
 
-                <h1 id="symbol"><%= comp_info.symbol %></h1>
-                <div id="country"><%= comp_info.country %></div>
-                <h2 id="name"><%= comp_info.name %></h2>
-                <p id="industry"><%= comp_info.industry_sector %></p>
-                <p id="current_price">Current Price: <%= comp_info.current_price %></p>
-                <p id="warranted_default">Warranted Default Price: <%= comp_info.warranted_price %></p>
+                <h1 class="symbol"><%= comp_info.symbol %>: <%=comp_info.recommendation%></h1>
+                <div class="country"><%= comp_info.country %></div>
+                <h2 class="name"><%= comp_info.name %></h2>
+                <p class="industry"><%= comp_info.industry_sector %></p>
+                <p class="current_price">Current Price: $<%= comp_info.current_price %></p>
+                <p class="warranted_default">Warranted Default Price: $<%= comp_info.warranted_price %></p>
             <%});%>
 
     </div>
@@ -38,12 +38,12 @@
             <br>
 
 
-            <button id="randomizeData">Randomize Data</button>
-            <button id="changeDataObject">Change Data Object</button>
-            <button id="addDataset">Add Dataset</button>
             <button id="removeDataset">Remove Dataset</button>
-            <button id="addData">Add Data</button>
-            <button id="removeData">Remove Data</button>
+            <button id="" style="visibility:hidden;">Randomize Data</button>
+            <button id="" style="visibility:hidden;">Change Data Object</button>
+            <button id="" style="visibility:hidden;">Add Dataset</button>
+            <button id="" style="visibility:hidden;">Add Data</button>
+            <button id="" style="visibility:hidden;">Remove Data</button>
             <script>
 
 
@@ -59,30 +59,58 @@
                 var randomColor = function(opacity) {
                     return 'rgba(' + randomColorFactor() + ',' + randomColorFactor() + ',' + randomColorFactor() + ',' + (opacity || '.3') + ')';
                 };
+                var rows =<%-JSON.stringify(stock_info)%>
+                opt = []
+                for (var i = 0; i < rows.length; i++) {
+                    var row = rows[i];
+                    opt[i] = row;
+                }
+                stock_info = opt;
+                for (var si = 0; si < stock_info.length; si++){
+                    stock_info[si].week1 = Math.abs(stock_info[si].current_price - stock_info[si].week1);
+                    stock_info[si].week2 = Math.abs(stock_info[si].current_price - stock_info[si].week2);
+                    stock_info[si].week4 = Math.abs(stock_info[si].current_price - stock_info[si].week4);
+                    stock_info[si].week13 = Math.abs(stock_info[si].current_price - stock_info[si].week13);
+                    stock_info[si].week26 = Math.abs(stock_info[si].current_price - stock_info[si].week26);
+                    stock_info[si].week30 = Math.abs(stock_info[si].current_price - stock_info[si].week30);
+                    stock_info[si].week39 = Math.abs(stock_info[si].current_price - stock_info[si].week39);
+                    stock_info[si].week52 = Math.abs(stock_info[si].current_price - stock_info[si].week52);
+                }
+
+                data_collection = [{
+                            label: stock_info[0].symbol,
+                            data: [stock_info[0].week1, stock_info[0].week2, stock_info[0].week4, stock_info[0].week13,stock_info[0].week26, stock_info[0].week30, stock_info[0].week39, stock_info[0].week52],
+                            borderDash: [5, 5],
+                        }];
+                if (stock_info.length > 1) {
+                    data_collection.push({
+                        label: stock_info[1].symbol,
+                            data: [stock_info[1].week1, stock_info[1].week2, stock_info[1].week4, stock_info[1].week13,stock_info[1].week26, stock_info[1].week30, stock_info[1].week39, stock_info[1].week52],
+                    })
+                }
+                if(stock_info.length > 2) {
+                    for(var row_num = 2; row_num < stock_info.length; row_num++) {
+                        console.log(row_num);
+                    // for every stock_info row after the second
+                        data_collection.push({
+                            hidden: true,
+                            label: stock_info[row_num].symbol,
+                            data: [stock_info[row_num].week1, stock_info[row_num].week2, stock_info[row_num].week4, stock_info[row_num].week13,stock_info[row_num].week26, stock_info[row_num].week30, stock_info[row_num].week39, stock_info[row_num].week52],
+                        });
+                    }
+                }
                 var config = {
                     type: 'line',
                     data: {
                         labels: ["Week 1", "Week 2", "Week 4", "Week 13", "Week 26", "Week 30", "Week 39", "Week 52"],
-                        datasets: [{
-                            label: "My First dataset",
-                            data: [randomScalingFactor(), randomScalingFactor(), randomScalingFactor(), randomScalingFactor(), randomScalingFactor(), randomScalingFactor(), randomScalingFactor()],
-                            fill: false,
-                            borderDash: [5, 5],
-                        }, {
-                            hidden: true,
-                            label: 'hidden dataset',
-                            data: [randomScalingFactor(), randomScalingFactor(), randomScalingFactor(), randomScalingFactor(), randomScalingFactor(), randomScalingFactor(), randomScalingFactor()],
-                        }, {
-                            label: "My Second dataset",
-                            data: [randomScalingFactor(), randomScalingFactor(), randomScalingFactor(), randomScalingFactor(), randomScalingFactor(), randomScalingFactor(), randomScalingFactor()],
-                        }]
+                        datasets: data_collection,
                     },
                     options: {
                         responsive: true,
 
                         title:{
                             display:true,
-                            text: "Data Visualization"
+                            text: "Price over time"
                         },
                         tooltips: {
                             mode: 'label',
@@ -128,8 +156,8 @@
                                     labelString: 'Value'
                                 },
                                 ticks: {
-                                    suggestedMin: -10,
-                                    suggestedMax: 250,
+                                    suggestedMin: -40,
+                                    suggestedMax: 40,
                                 }
                             }]
                         }
@@ -216,7 +244,7 @@
                 });
             </script>
             <br><br>
-            SOME News in this panel?
+            Recommendations panel
             <br><br>
             Summary panel?
         </div>
