@@ -12,19 +12,30 @@
 
 <body>
 
-
-    <div class="col-md-4 col-xs-4 col-sm-4">
+    <div style="margin-left:90px;">
+    <div class="col-md-4 col-xs-4 col-sm-4" >
             <%stock_info.forEach(function(comp_info) { %>
 
-                <h1 class="symbol"><%= comp_info.symbol %>: <%=comp_info.recommendation%></h1>
-                <div class="name"><%= comp_info.name %></div>
+                <% var rec_color = "#2ecc71";%>
+
+                <% var rec = comp_info.recommendation
+                if (rec === "Buy") {
+                    rec_color = "#2ecc71";
+                } else if (rec === "Sell") {
+                    rec_color ="#e74c3c";
+                } else {
+                    rec_color = "#298cb9";
+                }%>
+                <h1 class="symbol" ><b><%= comp_info.symbol %>: <span style="color:<%=rec_color%>"><%=comp_info.recommendation%></span></b></h1>
+                <div class="name" style= "font-size:20px;"><%= comp_info.name %></div>
                 <div class="country"><%= comp_info.country %></div>
-                <div class="market_cap">Market Cap: $<%= comp_info.market_cap %> bil</div>
-                <div class="daily_avg_volume">Daily Avg Volume: <%= comp_info.daily_vol_avg %>K shares</div>
-                <div class="industry">Industry: <%= comp_info.industry_sector %></div>
-                <div class="current_price">Current Price: $<%= comp_info.current_price %></div>
-                <div class="warranted_default">Warranted Price: $<%= comp_info.warranted_price %></div>
-                <div class="price_range">52-week Price Range: $<%= comp_info.low52_val %> - <%= comp_info.high52_val %> </div>
+                <div class="market_cap"><b>Market Cap:</b> $<%= comp_info.market_cap %> bil</div>
+                <div class="daily_avg_volume"><b>Daily Avg Volume:</b> <%= comp_info.daily_vol_avg %>K shares</div>
+                <div class="industry"><b>Industry:</b> <%= comp_info.industry_sector %></div>
+                <div class="current_price"><b>Current Price:</b> $<%= comp_info.current_price %></div>
+                <div class="warranted_default"><b>Warranted Price: </b>$<%= comp_info.warranted_price %></div>
+                <div class="price_range"><b>52-week Price Range: </b>$<%= comp_info.low52_val %> - <%= comp_info.high52_val %> </div>
+                <br>
             <%});%>
 
     </div>
@@ -37,8 +48,19 @@
             <br>
             <br>
 
+            <div id="removeDataset" style="
+                        background-color: #2980b9;
+                        border: none;
+                        color: white;
+                        padding: 15px 32px;
+                        text-align: center;
+                        text-transform: uppercase;
+                        font-family: 'Ubuntu Condensed', sans-serif;
+                        text-decoration: none;
+                        display: inline-block;
+                        font-size: 16px;">Remove First Dataset</div>
 
-            <button id="removeDataset">Remove First Dataset</button>
+
             <button id="" style="visibility:hidden;">Randomize Data</button>
             <button id="" style="visibility:hidden;">Change Data Object</button>
             <button id="" style="visibility:hidden;">Add Dataset</button>
@@ -244,11 +266,11 @@
                 });
             </script>
             <br><br>
-            Recommendations panel
-            <br><br>
-            Summary panel?
+
+            <a href = "/">Search again</a>
         </div>
     </div>
+</div>
 </body>
 
 </html>
