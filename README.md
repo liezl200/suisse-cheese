@@ -46,7 +46,7 @@ statsmodels.tsa.stattools
 # Challenges & Solutions
 
 ## Back end challenges
-
+We had to design our entire backend database to abstract the data out of the given XLS file. Node.js only has one process (see http://blog.modulus.io/nodejs-and-sqlite). Originally, we wanted to use sqlite, but this wasn't possible because sqlite uses a headless server, but queries would block the main Node.js process. Thus, we had to administrate and set up a MySQL server and host it on localhost. Our solution prevents network latency and allows for super fast queries for our data model and visualization.
 
 ## Front end challenges
 As a first attempt at responsive design, we used Bootstrap sidebars with the "affix" class, which treats the right panel with the graph as a sticky panel. Although this worked perfectly to our specifications on desktop and tablet, a problem arose, however, when we tested the design on mobile. The graph visualization disappears due to the nature of the sidebar, but the recommendations were displayed in a concise list. Ideally, we would create a separate mobile view and user interface to optimize for these devices, but for now, the mobile companion site serves as a quick summary / lookup tool without visualizations.
