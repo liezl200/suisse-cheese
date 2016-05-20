@@ -12,14 +12,42 @@
         -ms-user-select: none;
     }
     </style>
+
+
+    <h1 id="symbol">Symbol</h1> <div id="country">Country</div>
+    <h2 id="name">Name</h2>
+    <p id="current_price">Current Price</p>
+    <p id="warranted_default">Warranted Default</p>
+    <p id="industry">Industry</p>
+   
+
+    <script>
+    var rows =<%-JSON.stringify(stock_info)%>
+    document.getElementById("symbol").innerHTML = rows[0].symbol;
+    document.getElementById("country").innerHTML = rows[0].country;
+
+    document.getElementById("name").innerHTML = rows[0].name;
+    document.getElementById("current_price").innerHTML = "$"+rows[0].current_price;
+    document.getElementById("warranted_default").innerHTML = "$"+rows[0].warranted_price;
+    document.getElementById("industry").innerHTML = rows[0].industry_sector;
+
+
+
+    </script>
 </head>
 
 <body>
+    
+    
+    
+
     <div style="width:75%;">
         <canvas id="canvas"></canvas>
     </div>
     <br>
     <br>
+
+
     <button id="randomizeData">Randomize Data</button>
     <button id="changeDataObject">Change Data Object</button>
     <button id="addDataset">Add Dataset</button>
@@ -27,6 +55,11 @@
     <button id="addData">Add Data</button>
     <button id="removeData">Remove Data</button>
     <script>
+        
+
+
+    
+
         var MONTHS = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
         
         var randomScalingFactor = function() {
@@ -59,9 +92,10 @@
             },
             options: {
                 responsive: true,
+                
                 title:{
                     display:true,
-                    text:'Chart.js Line Chart'
+                    text: "Data Visualization"
                 },
                 tooltips: {
                     mode: 'label',
