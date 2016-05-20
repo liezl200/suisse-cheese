@@ -13,225 +13,225 @@
 <body>
 
     <div style="margin-left:90px;">
-    <div class="col-md-4 col-xs-4 col-sm-4" >
-            <%stock_info.forEach(function(comp_info) { %>
+        <div class="col-md-4 col-xs-4 col-sm-4" >
+                <%stock_info.forEach(function(comp_info) { %>
 
-                <% var rec_color = "#2ecc71";%>
+                    <% var rec_color = "#2ecc71";%>
 
-                <% var rec = comp_info.recommendation
-                if (rec === "Buy") {
-                    rec_color = "#2ecc71";
-                } else if (rec === "Sell") {
-                    rec_color ="#e74c3c";
-                } else {
-                    rec_color = "#298cb9";
-                }%>
-                <h1 class="symbol" ><b><%= comp_info.symbol %>: <span style="color:<%=rec_color%>"><%=comp_info.recommendation%></span></b></h1>
-                <div class="name" style= "font-size:20px;"><%= comp_info.name %></div>
-                <div class="country"><%= comp_info.country %></div>
-                <div class="market_cap"><b>Market Cap:</b> $<%= comp_info.market_cap %> bil</div>
-                <div class="daily_avg_volume"><b>Daily Avg Volume:</b> <%= comp_info.daily_vol_avg %>K shares</div>
-                <div class="industry"><b>Industry:</b> <%= comp_info.industry_sector %></div>
-                <div class="current_price"><b>Current Price:</b> $<%= comp_info.current_price %></div>
-                <div class="warranted_default"><b>Warranted Price: </b>$<%= comp_info.warranted_price %></div>
-                <div class="price_range"><b>52-week Price Range: </b>$<%= comp_info.low52_val %> - $<%= comp_info.high52_val %> </div>
-                <br>
-            <%});%>
-
-    </div>
-
-    <div class="col-md-8 col-xs-8 col-sm-8">
-        <div class ="sidebar-nav-fixed affix">
-            <div style="width:100%;">
-                <canvas id="canvas"></canvas>
-            </div>
-            <br>
-            <br>
-
-            <div id="removeDataset" onclick="myFunction()" style="
-                        background-color: #2980b9;
-                        border: none;
-                        color: white;
-                        padding: 15px 32px;
-                        text-align: center;
-                        text-transform: uppercase;
-                        font-family: 'Ubuntu Condensed', sans-serif;
-                        text-decoration: none;
-                        display: inline-block;
-                        font-size: 16px;">Search Again</div>
-            <script>
-            function myFunction() {
-                window.location.href = "/";
-            }
-            </script>
-
-
-            <button id="" style="visibility:hidden;">Randomize Data</button>
-            <button id="" style="visibility:hidden;">Change Data Object</button>
-            <button id="" style="visibility:hidden;">Add Dataset</button>
-            <button id="" style="visibility:hidden;">Add Data</button>
-            <button id="" style="visibility:hidden;">Remove Data</button>
-            <script>
-
-
-                var WEEKS = ["Week 1", "Week 2", "Week 4", "Week 13", "Week 26", "Week 30", "Week 39", "Week 52"];
-
-                var randomScalingFactor = function() {
-                    return Math.round(Math.random() * 100);
-                    //return 0;
-                };
-                var randomColorFactor = function() {
-                    return Math.round(Math.random() * 255);
-                };
-                var randomColor = function(opacity) {
-                    return 'rgba(' + randomColorFactor() + ',' + randomColorFactor() + ',' + randomColorFactor() + ',' + (opacity || '.3') + ')';
-                };
-                var rows =<%-JSON.stringify(stock_info)%>
-                opt = []
-                for (var i = 0; i < rows.length; i++) {
-                    var row = rows[i];
-                    opt[i] = row;
-                }
-                stock_info = opt;
-                for (var si = 0; si < stock_info.length; si++){
-                    stock_info[si].week1 = Math.abs(stock_info[si].current_price - stock_info[si].week1);
-                    stock_info[si].week2 = Math.abs(stock_info[si].current_price - stock_info[si].week2);
-                    stock_info[si].week4 = Math.abs(stock_info[si].current_price - stock_info[si].week4);
-                    stock_info[si].week13 = Math.abs(stock_info[si].current_price - stock_info[si].week13);
-                    stock_info[si].week26 = Math.abs(stock_info[si].current_price - stock_info[si].week26);
-                    stock_info[si].week30 = Math.abs(stock_info[si].current_price - stock_info[si].week30);
-                    stock_info[si].week39 = Math.abs(stock_info[si].current_price - stock_info[si].week39);
-                    stock_info[si].week52 = Math.abs(stock_info[si].current_price - stock_info[si].week52);
-                }
-
-                data_collection = [{
-                            label: stock_info[0].symbol,
-                            data: [stock_info[0].week1, stock_info[0].week2, stock_info[0].week4, stock_info[0].week13,stock_info[0].week26, stock_info[0].week30, stock_info[0].week39, stock_info[0].week52],
-                            borderDash: [5, 5],
-                        }];
-                if (stock_info.length > 1) {
-                    data_collection.push({
-                        label: stock_info[1].symbol,
-                            data: [stock_info[1].week1, stock_info[1].week2, stock_info[1].week4, stock_info[1].week13,stock_info[1].week26, stock_info[1].week30, stock_info[1].week39, stock_info[1].week52],
-                    })
-                }
-                if(stock_info.length > 2) {
-                    for(var row_num = 2; row_num < stock_info.length; row_num++) {
-                        console.log(row_num);
-                    // for every stock_info row after the second
-                        data_collection.push({
-                            hidden: true,
-                            label: stock_info[row_num].symbol,
-                            data: [stock_info[row_num].week1, stock_info[row_num].week2, stock_info[row_num].week4, stock_info[row_num].week13,stock_info[row_num].week26, stock_info[row_num].week30, stock_info[row_num].week39, stock_info[row_num].week52],
-                        });
-                    }
-                }
-                var config = {
-                    type: 'line',
-                    data: {
-                        labels: ["Week 1", "Week 2", "Week 4", "Week 13", "Week 26", "Week 30", "Week 39", "Week 52"],
-                        datasets: data_collection,
-                    },
-                    options: {
-                        responsive: true,
-
-                        title:{
-                            display:true,
-                            text: "Price over time"
-                        },
-                        tooltips: {
-                            mode: 'label',
-                            callbacks: {
-                            }
-                        },
-                        hover: {
-                            mode: 'dataset'
-                        },
-                        scales: {
-                            xAxes: [{
-                                display: true,
-                                scaleLabel: {
-                                    show: true,
-                                    labelString: 'Week'
-                                }
-                            }],
-                            yAxes: [{
-                                display: true,
-                                scaleLabel: {
-                                    show: true,
-                                    labelString: 'Price'
-                                },
-                                ticks: {
-                                    suggestedMin: -40,
-                                    suggestedMax: 40,
-                                }
-                            }]
-                        }
-                    }
-                };
-                $.each(config.data.datasets, function(i, dataset) {
-                    dataset.borderColor = randomColor(0.4);
-                    dataset.backgroundColor = randomColor(0.5);
-                    dataset.pointBorderColor = randomColor(0.7);
-                    dataset.pointBackgroundColor = randomColor(0.5);
-                    dataset.pointBorderWidth = 1;
-                });
-                window.onload = function() {
-                    var ctx = document.getElementById("canvas").getContext("2d");
-                    window.myLine = new Chart(ctx, config);
-                };
-                $('#randomizeData').click(function() {
-                    $.each(config.data.datasets, function(i, dataset) {
-                        dataset.data = dataset.data.map(function() {
-                            return randomScalingFactor();
-                        });
-                    });
-                    window.myLine.update();
-                });
-
-                $('#addDataset').click(function() {
-                    var newDataset = {
-                        label: 'Dataset ' + config.data.datasets.length,
-                        borderColor: randomColor(0.4),
-                        backgroundColor: randomColor(0.5),
-                        pointBorderColor: randomColor(0.7),
-                        pointBackgroundColor: randomColor(0.5),
-                        pointBorderWidth: 1,
-                        data: [],
-                    };
-                    for (var index = 0; index < config.data.labels.length; ++index) {
-                        newDataset.data.push(randomScalingFactor());
-                    }
-                    config.data.datasets.push(newDataset);
-                    window.myLine.update();
-                });
-                $('#addData').click(function() {
-                    if (config.data.datasets.length > 0) {
-                        var week = WEEKS[config.data.labels.length % WEEKS.length];
-                        config.data.labels.push(week);
-                        $.each(config.data.datasets, function(i, dataset) {
-                            dataset.data.push(randomScalingFactor());
-                        });
-                        window.myLine.update();
-                    }
-                });
-                $('#removeDataset').click(function() {
-                    config.data.datasets.splice(0, 1);
-                    window.myLine.update();
-                });
-                $('#removeData').click(function() {
-                    config.data.labels.splice(-1, 1); // remove the label first
-                    config.data.datasets.forEach(function(dataset, datasetIndex) {
-                        dataset.data.pop();
-                    });
-                    window.myLine.update();
-                });
-            </script>
-            <br><br>
+                    <% var rec = comp_info.recommendation
+                    if (rec === "Buy") {
+                        rec_color = "#2ecc71";
+                    } else if (rec === "Sell") {
+                        rec_color ="#e74c3c";
+                    } else {
+                        rec_color = "#298cb9";
+                    }%>
+                    <h1 class="symbol" ><b><%= comp_info.symbol %>: <span style="color:<%=rec_color%>"><%=comp_info.recommendation%></span></b></h1>
+                    <div class="name" style= "font-size:20px;"><%= comp_info.name %></div>
+                    <div class="country"><%= comp_info.country %></div>
+                    <div class="market_cap"><b>Market Cap:</b> $<%= comp_info.market_cap %> bil</div>
+                    <div class="daily_avg_volume"><b>Daily Avg Volume:</b> <%= comp_info.daily_vol_avg %>K shares</div>
+                    <div class="industry"><b>Industry:</b> <%= comp_info.industry_sector %></div>
+                    <div class="current_price"><b>Current Price:</b> $<%= comp_info.current_price %></div>
+                    <div class="warranted_default"><b>Warranted Price: </b>$<%= comp_info.warranted_price %></div>
+                    <div class="price_range"><b>52-week Price Range: </b>$<%= comp_info.low52_val %> - $<%= comp_info.high52_val %> </div>
+                    <br>
+                <%});%>
 
         </div>
+
+        <div class="col-md-8 col-xs-8 col-sm-8">
+            <div class ="sidebar-nav-fixed affix">
+                <div style="width:100%;">
+                    <canvas id="canvas"></canvas>
+                </div>
+                <br>
+                <br>
+
+                <div id="removeDataset" onclick="myFunction()" style="
+                            background-color: #2980b9;
+                            border: none;
+                            color: white;
+                            padding: 15px 32px;
+                            text-align: center;
+                            text-transform: uppercase;
+                            font-family: 'Ubuntu Condensed', sans-serif;
+                            text-decoration: none;
+                            display: inline-block;
+                            font-size: 16px;">Search Again</div>
+                <script>
+                function myFunction() {
+                    window.location.href = "/";
+                }
+                </script>
+
+
+                <button id="" style="visibility:hidden;">Randomize Data</button>
+                <button id="" style="visibility:hidden;">Change Data Object</button>
+                <button id="" style="visibility:hidden;">Add Dataset</button>
+                <button id="" style="visibility:hidden;">Add Data</button>
+                <button id="" style="visibility:hidden;">Remove Data</button>
+                <script>
+
+
+                    var WEEKS = ["Week 1", "Week 2", "Week 4", "Week 13", "Week 26", "Week 30", "Week 39", "Week 52"];
+
+                    var randomScalingFactor = function() {
+                        return Math.round(Math.random() * 100);
+                        //return 0;
+                    };
+                    var randomColorFactor = function() {
+                        return Math.round(Math.random() * 255);
+                    };
+                    var randomColor = function(opacity) {
+                        return 'rgba(' + randomColorFactor() + ',' + randomColorFactor() + ',' + randomColorFactor() + ',' + (opacity || '.3') + ')';
+                    };
+                    var rows =<%-JSON.stringify(stock_info)%>
+                    opt = []
+                    for (var i = 0; i < rows.length; i++) {
+                        var row = rows[i];
+                        opt[i] = row;
+                    }
+                    stock_info = opt;
+                    for (var si = 0; si < stock_info.length; si++){
+                        stock_info[si].week1 = Math.abs(stock_info[si].current_price - stock_info[si].week1);
+                        stock_info[si].week2 = Math.abs(stock_info[si].current_price - stock_info[si].week2);
+                        stock_info[si].week4 = Math.abs(stock_info[si].current_price - stock_info[si].week4);
+                        stock_info[si].week13 = Math.abs(stock_info[si].current_price - stock_info[si].week13);
+                        stock_info[si].week26 = Math.abs(stock_info[si].current_price - stock_info[si].week26);
+                        stock_info[si].week30 = Math.abs(stock_info[si].current_price - stock_info[si].week30);
+                        stock_info[si].week39 = Math.abs(stock_info[si].current_price - stock_info[si].week39);
+                        stock_info[si].week52 = Math.abs(stock_info[si].current_price - stock_info[si].week52);
+                    }
+
+                    data_collection = [{
+                                label: stock_info[0].symbol,
+                                data: [stock_info[0].week1, stock_info[0].week2, stock_info[0].week4, stock_info[0].week13,stock_info[0].week26, stock_info[0].week30, stock_info[0].week39, stock_info[0].week52],
+                                borderDash: [5, 5],
+                            }];
+                    if (stock_info.length > 1) {
+                        data_collection.push({
+                            label: stock_info[1].symbol,
+                                data: [stock_info[1].week1, stock_info[1].week2, stock_info[1].week4, stock_info[1].week13,stock_info[1].week26, stock_info[1].week30, stock_info[1].week39, stock_info[1].week52],
+                        })
+                    }
+                    if(stock_info.length > 2) {
+                        for(var row_num = 2; row_num < stock_info.length; row_num++) {
+                            console.log(row_num);
+                        // for every stock_info row after the second
+                            data_collection.push({
+                                hidden: true,
+                                label: stock_info[row_num].symbol,
+                                data: [stock_info[row_num].week1, stock_info[row_num].week2, stock_info[row_num].week4, stock_info[row_num].week13,stock_info[row_num].week26, stock_info[row_num].week30, stock_info[row_num].week39, stock_info[row_num].week52],
+                            });
+                        }
+                    }
+                    var config = {
+                        type: 'line',
+                        data: {
+                            labels: ["Week 1", "Week 2", "Week 4", "Week 13", "Week 26", "Week 30", "Week 39", "Week 52"],
+                            datasets: data_collection,
+                        },
+                        options: {
+                            responsive: true,
+
+                            title:{
+                                display:true,
+                                text: "Price over time"
+                            },
+                            tooltips: {
+                                mode: 'label',
+                                callbacks: {
+                                }
+                            },
+                            hover: {
+                                mode: 'dataset'
+                            },
+                            scales: {
+                                xAxes: [{
+                                    display: true,
+                                    scaleLabel: {
+                                        show: true,
+                                        labelString: 'Week'
+                                    }
+                                }],
+                                yAxes: [{
+                                    display: true,
+                                    scaleLabel: {
+                                        show: true,
+                                        labelString: 'Price'
+                                    },
+                                    ticks: {
+                                        suggestedMin: -40,
+                                        suggestedMax: 40,
+                                    }
+                                }]
+                            }
+                        }
+                    };
+                    $.each(config.data.datasets, function(i, dataset) {
+                        dataset.borderColor = randomColor(0.4);
+                        dataset.backgroundColor = randomColor(0.5);
+                        dataset.pointBorderColor = randomColor(0.7);
+                        dataset.pointBackgroundColor = randomColor(0.5);
+                        dataset.pointBorderWidth = 1;
+                    });
+                    window.onload = function() {
+                        var ctx = document.getElementById("canvas").getContext("2d");
+                        window.myLine = new Chart(ctx, config);
+                    };
+                    $('#randomizeData').click(function() {
+                        $.each(config.data.datasets, function(i, dataset) {
+                            dataset.data = dataset.data.map(function() {
+                                return randomScalingFactor();
+                            });
+                        });
+                        window.myLine.update();
+                    });
+
+                    $('#addDataset').click(function() {
+                        var newDataset = {
+                            label: 'Dataset ' + config.data.datasets.length,
+                            borderColor: randomColor(0.4),
+                            backgroundColor: randomColor(0.5),
+                            pointBorderColor: randomColor(0.7),
+                            pointBackgroundColor: randomColor(0.5),
+                            pointBorderWidth: 1,
+                            data: [],
+                        };
+                        for (var index = 0; index < config.data.labels.length; ++index) {
+                            newDataset.data.push(randomScalingFactor());
+                        }
+                        config.data.datasets.push(newDataset);
+                        window.myLine.update();
+                    });
+                    $('#addData').click(function() {
+                        if (config.data.datasets.length > 0) {
+                            var week = WEEKS[config.data.labels.length % WEEKS.length];
+                            config.data.labels.push(week);
+                            $.each(config.data.datasets, function(i, dataset) {
+                                dataset.data.push(randomScalingFactor());
+                            });
+                            window.myLine.update();
+                        }
+                    });
+                    $('#removeDataset').click(function() {
+                        config.data.datasets.splice(0, 1);
+                        window.myLine.update();
+                    });
+                    $('#removeData').click(function() {
+                        config.data.labels.splice(-1, 1); // remove the label first
+                        config.data.datasets.forEach(function(dataset, datasetIndex) {
+                            dataset.data.pop();
+                        });
+                        window.myLine.update();
+                    });
+                </script>
+                <br><br>
+
+            </div>
+        </div>
     </div>
-</div>
 </body>
 
 </html>
